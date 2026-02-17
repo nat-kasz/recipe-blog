@@ -44,15 +44,22 @@ guessed = []
 number_of_guesses = 0
 word = ''
 
-for index in range(0, len(polish_alphabet), 7):
-    toggle1 = ui.toggle({1: polish_alphabet[index], 2: polish_alphabet[index+1], 3: polish_alphabet[index+2], 4: polish_alphabet[index+3], 5: polish_alphabet[index+4], 6: polish_alphabet[index+5], 7: polish_alphabet[index+6]})
+with ui.splitter().style('width: 100%;') as splitter:
+    with splitter.before:
+        with ui.grid(columns=7):
+            index =0
+            for i in range(0,5):
+                for j in range(0,7):
+                    ui.button(polish_alphabet[index])
+                    index += 1
+    with splitter.after:
+        for i in ingredients:
+            word = i
+            number_of_letters = len(word)
+            with ui.row().style('margin-left: 20px; font-size: 100px;'):
+                for _ in range(number_of_letters):
+                    ui.label('_')
 
-for i in ingredients:
-    word = i
-    number_of_letters = len(word)
-    with ui.row():
-        for _ in range(number_of_letters):
-            ui.label('_')
 
 
 with ui.splitter().style('width: 15%;') as splitter:
