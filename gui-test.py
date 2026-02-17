@@ -37,7 +37,6 @@ ui.add_css('''
 ''')
 
 
-
 polish_alphabet = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż"
 
 guessed = []
@@ -46,19 +45,18 @@ word = ''
 
 with ui.splitter().style('width: 100%;') as splitter:
     with splitter.before:
-        with ui.grid(columns=7):
+        with ui.grid(columns=7).style('margin: auto;'):
             index =0
             for i in range(0,5):
                 for j in range(0,7):
                     ui.button(polish_alphabet[index])
                     index += 1
     with splitter.after:
-        for i in ingredients:
-            word = i
-            number_of_letters = len(word)
-            with ui.row().style('margin-left: 20px; font-size: 100px;'):
-                for _ in range(number_of_letters):
-                    ui.label('_')
+        word = list(ingredients.keys())[number_of_guesses]
+        number_of_letters = len(word)
+        with ui.row().style('margin-left: 20px; font-size: 100px;'):
+            for _ in range(number_of_letters):
+                ui.label('_')
 
 
 
